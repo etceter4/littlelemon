@@ -26,9 +26,8 @@ class Order(models.Model):
 
     customer_name = models.CharField(max_length=100)
     food_item = models.ForeignKey(FoodItem, on_delete=models.CASCADE)
-    delivery_assigned_to = models.CharField(max_length=100, blank=True, null=True)
     delivery_status = models.CharField(max_length=10, choices=DELIVERY_STATUS_CHOICES, default='Pending')
-    delivery_crew_member = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    delivery_crew_member = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="orders_assigned")
 
     def __str__(self):
         return f"Order for {self.customer_name}"

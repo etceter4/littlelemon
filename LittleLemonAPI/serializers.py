@@ -12,7 +12,7 @@ class FoodItemSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer): 
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = ['id', 'customer_name', 'total_price', 'delivered', 'delivery_crew_member', ...]
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
