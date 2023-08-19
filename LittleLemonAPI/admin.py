@@ -1,0 +1,27 @@
+from django.contrib import admin
+from django.contrib.auth.models import User, Group
+from .models import FoodItem, Order, Category
+
+# Unregister the default User and Group admin classes
+admin.site.unregister(User)
+admin.site.unregister(Group)
+
+@admin.register(FoodItem)
+class FoodItemAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'price', 'is_item_of_the_day', 'category')
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'customer_name', 'food_item', 'delivery_status', 'delivery_assigned_to')
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('id', 'username', 'email', 'first_name', 'last_name', 'is_staff',)
+
+@admin.register(Group)
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
